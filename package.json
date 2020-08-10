@@ -1,0 +1,48 @@
+{
+    "name": "mreading-service",
+    "version": "1.0.0",
+    "description": "Service to manage model reading pdf operations in our Rank up app",
+    "main": "service.js",
+    "scripts": {
+        "prebuild": "rm -rf ./build/*",
+        "build": "babel src -d ./build ./src",
+        "prestart": "npm run build",
+        "start": "node ./build/service.js",
+        "prod": "node ./build/service.js",
+        "dev": "DEBUG=app,app:* nodemon --exec babel-node ./src/service.js",
+        "winDev": "nodemon --exec babel-node ./src/service.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lwx-amr/RURankingService.git"
+    },
+    "keywords": [
+        "Node.js",
+        "Express",
+        "Mongo"
+    ],
+    "author": "Amr Hussien",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/lwx-amr/RURankingService/issues"
+    },
+    "homepage": "https://github.com/lwx-amr/RURankingService#readme",
+    "dependencies": {
+        "config": "^3.3.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-rate-limit": "^5.1.1",
+        "helmet": "^3.21.3",
+        "mongoose": "^5.9.4",
+        "path": "^0.12.7",
+        "python-shell": "^2.0.1",
+        "touch": "^3.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.10.2",
+        "@babel/node": "^7.10.1",
+        "@babel/preset-env": "^7.10.2",
+        "eslint": "^7.2.0",
+        "nodemon": "^2.0.4"
+    }
+}
