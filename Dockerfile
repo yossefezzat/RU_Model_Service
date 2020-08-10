@@ -1,29 +1,23 @@
-FROM node:12-stretch-slim
-# Create app directory
-WORKDIR /usr/src/app
+FROM python:3.6
+RUN pip3 install nltk
+RUN pip3 install PyMuPDF
+RUN pip3 install textdistance
+RUN pip3 install gensim
+RUN pip3 install spacy
+RUN pip install fitz
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+FROM node:12
+# Create app directory
+WORKDIR /server
+
 COPY package*.json ./
 
-RUN apt-get install --yes python
 RUN npm install
-RUN apt-get install python3-pip 
-RUN pip install PyMuPDF
-RUN pip install nltk
-RUN pip install textdistance
-RUN pip install fitz
-RUN pip install gensim
-RUN pip install multiprocessing
-RUN pip install spacy
-
-
-# If you are building your code for production
-# RUN npm ci --only=production
 
 # Bundle app source
-COPY . .
+COPY src ./src
+COPY config ./config
+
 
 EXPOSE 3000
-CMD [ "npm", "run", "winDev" ]
+CMD [ "npm", "run" , "winDev"]
